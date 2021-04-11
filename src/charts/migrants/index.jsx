@@ -29,7 +29,7 @@ export const Migrants = () => {
   }) : data;
 
   return (
-    <div className="globalmap">
+    <div className="main-map">
       <svg width={width} height={height}>
         <BubbleMap data={data} filteredData={filteredData} worldAtlas={worldAtlas} />
         <g transform={`translate(0, ${height - dateHistogramSize * height})`}>

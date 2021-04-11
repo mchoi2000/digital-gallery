@@ -1,6 +1,6 @@
-
+import { PopulationBar } from "./populationBar";
 export const Population = () => {
   return (
-    <div>hello</div>
+    <PopulationBar />
   )
 }
