@@ -1,0 +1,31 @@
+.population-marks {
+  fill: #137B80;
+}
+.population-marks .land {
+  fill: #ececec;
+}
+.population-marks .sphere {
+  fill: #fbfbfb;
+}
+.population-marks .interiors {
+  fill: none;
+  stroke: #d9dfe0;
+}
+.population-marks .graticules {
+  fill: none;
+  stroke: #ececec;
+}
+circle {
+	fill: #61c742;
+  opacity: 0.3;
+}
+.population-maps {
+  padding: 20px 0;
+  text-align: center;
+  height: 1400px;
+  width: 100%;
+  overflow: scroll;
+}
+.population-map-title {
+  margin-bottom: 40px;
+}

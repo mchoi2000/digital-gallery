@@ -1,6 +1,12 @@
+import { PopulationMap } from "./populationMap";
 import { PopulationBar } from "./populationBar";
+
 export const Population = () => {
   return (
-    <PopulationBar />
+    <div className="population-maps">
+      <PopulationMap />
+      {/* <PopulationBar /> */}
+    </div>
+      
   )
 }

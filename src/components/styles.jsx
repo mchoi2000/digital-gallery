@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Tabs, Tab } from "react-bootstrap";
+import { Tabs } from "react-bootstrap";
 import boatImage from '../assets/boatImage.jpg';
 
 export const NavbarContainer = styled.div`
@@ -80,4 +80,11 @@ export const CheckboxLabel = styled.label`
   cursor: pointer;
   font-weight: normal;
   padding-right: 10px;
+`;
+
+export const ComingSoon = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;

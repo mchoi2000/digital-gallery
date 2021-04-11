@@ -7,9 +7,9 @@ import { Population } from "../charts/population";
 export const Gallery = () => {
   return (
     <TabsContainer defaultActiveKey="pop" id="main-tabs">
-      <Tab eventKey="home" title="Covid-19">
+      <Tab eventKey="pop" title="World Population">
         <TabContent>
-          <Covid />
+          <Population />
         </TabContent>
       </Tab>
       <Tab eventKey="mm" title="Missing Migrants">
@@ -17,9 +17,9 @@ export const Gallery = () => {
           <Migrants />
         </TabContent>
       </Tab>
-      <Tab eventKey="pop" title="World Population">
+      <Tab eventKey="cov" title="Covid-19">
         <TabContent>
-          <Population />
+          <Covid />
         </TabContent>
       </Tab>
     </TabsContainer>

@@ -10,9 +10,9 @@ const yValue = (d) => d.deathTotal;
 
 const margin = {
   top: 60,
-  right: 140,
+  right: 100,
   bottom: 60,
-  left: 110,
+  left: 100,
 };
 
 export const LineChart = ({ data, width, height }) => {
@@ -58,7 +58,7 @@ export const LineChart = ({ data, width, height }) => {
   
   const Tooltip = ({activeRow, className}) => (
   	<text className={className} x={-10} y={-10} text-anchor={'end'}>
-      {activeRow.countryName}: {formatComma(activeRow.deathTotal)} {activeRow.deathTotal > 1 ? 'deaths' : 'death'} as of {formatTime(activeRow.date)}
+      {activeRow.countryName}: {formatComma(activeRow.deathTotal)} {activeRow.deathTotal > 1 ? 'cases' : 'case'} as of {formatTime(activeRow.date)}
     </text>
   );
 
@@ -79,89 +79,91 @@ export const LineChart = ({ data, width, height }) => {
   const linecolor = showColor ? "color" : "nocolor";
 
   return (
-    <>
-      <svg width={width} height={height}>
-        <g transform={`translate(${margin.left},${margin.top})`}>
-          <XAxis xScale={xScale} innerHeight={innerHeight} />
-          <YAxis yScale={yScale} innerWidth={innerWidth} />
-          {showColor ? (data.map((countryTimeseries) => {
-            const r = Math.random() * 255;
-            const g = Math.random() * 255;
-            const b = Math.random() * 255;
-            const strokeColor = `rgb(${r},${g},${b})`;
-            
-            return (
-              <path className={linecolor}
-              stroke={strokeColor}
-              d={lineGenerator(countryTimeseries)} />
-              );
-            })) 
-            :
-            (data.map((countryTimeseries) => {
+    <div className="covid-combined">
+      <div>
+        <svg width={width} height={height}>
+          <g transform={`translate(${margin.left},${margin.top})`}>
+            <XAxis xScale={xScale} innerHeight={innerHeight} />
+            <YAxis yScale={yScale} innerWidth={innerWidth} />
+            {showColor ? (data.map((countryTimeseries) => {
+              const r = Math.random() * 255;
+              const g = Math.random() * 255;
+              const b = Math.random() * 255;
+              const strokeColor = `rgb(${r},${g},${b})`;
+              
               return (
-                <path
-                className="marker-line"
-                d={lineGenerator(countryTimeseries)}
-                />
+                <path className={linecolor}
+                stroke={strokeColor}
+                d={lineGenerator(countryTimeseries)} />
                 );
-              })
-            )
-          }
+              })) 
+              :
+              (data.map((countryTimeseries) => {
+                return (
+                  <path
+                  className="marker-line"
+                  d={lineGenerator(countryTimeseries)}
+                  />
+                  );
+                })
+              )
+            }
 
-          {showActive && activeRow && (
-            <>
-              <path
-                className="marker-line active"
-                d={lineGenerator(
-                  data.find(
-                    (countryTimeseries) =>
-                    countryTimeseries.countryName ===
-                    activeRow.countryName
-                    )
-                    )}
-                    />
-              <g transform={`translate(${lineGenerator.x()(activeRow)},${lineGenerator.y()(activeRow)})`}>
-                <circle r={4} />
-                <Tooltip activeRow={activeRow} className="voronoi-tooltip-stroke" />
-                <Tooltip activeRow={activeRow} className="voronoi-tooltip" />
-              </g>
-            </>
-          )}
+            {showActive && activeRow && (
+              <>
+                <path
+                  className="marker-line active"
+                  d={lineGenerator(
+                    data.find(
+                      (countryTimeseries) =>
+                      countryTimeseries.countryName ===
+                      activeRow.countryName
+                      )
+                      )}
+                      />
+                <g transform={`translate(${lineGenerator.x()(activeRow)},${lineGenerator.y()(activeRow)})`}>
+                  <circle r={4} />
+                  <Tooltip activeRow={activeRow} className="voronoi-tooltip-stroke" />
+                  <Tooltip activeRow={activeRow} className="voronoi-tooltip" />
+                </g>
+              </>
+            )}
 
-          <text
-            className="title"
-            transform={`translate(${innerWidth / 2}, -45)`}
-            text-anchor="middle"
-            >
-            COVID-19 Global Confirmed Cases by Country
-          </text>
-          <text
-            className="axis-label"
-            transform={`translate(-35 ,${innerHeight / 2}) rotate(-90)`}
-            text-anchor="middle"
-            >
-            Cumulative Deaths
-          </text>
-          <text
-            className="axis-label"
-            transform={`translate(${innerWidth / 2}, ${innerHeight + 30})`}
-            text-anchor="middle"
-            alignment-baseline="hanging"
-            >
-            Time
-          </text>
-          <VoronoiOverlay
-            margin={margin}
-            onHover={handleVoronoiHover}
-            innerHeight={innerHeight}
-            innerWidth={innerWidth}
-            allData={allData}
-            lineGenerator={lineGenerator}
-            showVoronoi={showVoronoi}
-            />
-        </g>
-      </svg>
+            <text
+              className="title"
+              transform={`translate(${innerWidth / 2}, -45)`}
+              text-anchor="middle"
+              >
+              COVID-19 Global Confirmed Cases by Country
+            </text>
+            <text
+              className="axis-label"
+              transform={`translate(-35 ,${innerHeight / 2}) rotate(-90)`}
+              text-anchor="middle"
+              >
+              Cumulative Cases
+            </text>
+            <text
+              className="axis-label"
+              transform={`translate(${innerWidth / 2}, ${innerHeight + 30})`}
+              text-anchor="middle"
+              alignment-baseline="hanging"
+              >
+              Time
+            </text>
+            <VoronoiOverlay
+              margin={margin}
+              onHover={handleVoronoiHover}
+              innerHeight={innerHeight}
+              innerWidth={innerWidth}
+              allData={allData}
+              lineGenerator={lineGenerator}
+              showVoronoi={showVoronoi}
+              />
+          </g>
+        </svg>
+      </div>
       <div className="display-options" ><Checkboxes {...checkboxes} /></div>
-    </>
+    </div>
   );
 };

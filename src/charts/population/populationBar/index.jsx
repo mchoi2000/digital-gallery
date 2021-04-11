@@ -15,7 +15,8 @@ export const PopulationBar = () => {
   const data = useData();
 
   if (!data) {
-    return <pre className="loading">Loading...</pre>;
+    // return <pre className="loading">Loading...</pre>;
+    return <pre className="loading"></pre>;
   }
 
   const innerHeight = height - margin.bottom - margin.top;
@@ -34,15 +35,13 @@ export const PopulationBar = () => {
   	.paddingInner(0.15);
 
   return (
-    <div className="main-map">
-      <svg width={width} height={height}>
-        <g transform={`translate(${margin.left},${margin.top})`} >
-          <AxisBottom xScale={xScale} innerHeight={innerHeight} tickFormat={xAxisFormat} />
-          <AxisLeft yScale={yScale} />
-          <text className="axis-label" x={innerWidth / 2} y={innerHeight + xAxisLabelOffset} textAnchor="middle">Population</text>
-          <Marks data={data} xScale={xScale} yScale={yScale} xValue={xValue} yValue={yValue} tooltipFormat={xAxisFormat} />
-        </g>
-      </svg>
-    </div>
+    <svg width={width} height={height}>
+      <g transform={`translate(${margin.left},${margin.top})`} >
+        <AxisBottom xScale={xScale} innerHeight={innerHeight} tickFormat={xAxisFormat} />
+        <AxisLeft yScale={yScale} />
+        <text className="axis-label" x={innerWidth / 2} y={innerHeight + xAxisLabelOffset} textAnchor="middle">Population</text>
+        <Marks data={data} xScale={xScale} yScale={yScale} xValue={xValue} yValue={yValue} tooltipFormat={xAxisFormat} />
+      </g>
+  </svg>
   );
 };
