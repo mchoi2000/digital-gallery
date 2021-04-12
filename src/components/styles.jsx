@@ -10,7 +10,7 @@ export const NavbarContainer = styled.div`
 
   a, .navbar-brand, .navbar-collapse, .navbar-nav .nav-link {
     color: #bbb;
-    font-size: 0.9rem;
+    font-size: 1rem;
 
     &:hover {
       color: white;
@@ -56,12 +56,11 @@ export const Leadspace = styled.div`
 
 export const TabsContainer = styled(Tabs)`
   position: absolute;
-  top: 179px;
+  top: 172px;
   right: 20px;
   font-size: 0.9rem;
 
   a {
-    padding: 0.2rem 1rem;
     color: #bbb;
   }
 `;

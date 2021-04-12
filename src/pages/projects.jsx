@@ -1,9 +1,8 @@
 import { TabContent, ComingSoon } from "../components/styles";
+import { Apps } from "../apps";
 
 export const Projects = () => {
   return (
-    <TabContent>
-      <ComingSoon>Coming soon...</ComingSoon>
-    </TabContent>
+    <Apps />
   )
 }

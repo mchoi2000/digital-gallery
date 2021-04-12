@@ -11,7 +11,7 @@ export const NavigationBar = () => (
         <Nav className="ml-auto">
           <Nav.Item>
             <Nav.Link>
-              <Link to="/">Gallery</Link>
+              <Link to="/">Charts</Link>
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
